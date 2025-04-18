@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Admin</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Firebase Config -->
+    <script type="module" src="firebase-config.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Register Admin</h2>
+        <form id="signup-form">
+            <input type="text" id="admin-name" placeholder="Admin Name" required>
+            <input type="email" id="admin-email" placeholder="Email" required>
+            <input type="password" id="admin-password" placeholder="Password" required>
+            <input type="text" id="admin-phone" placeholder="Phone Number" required>
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Already have an account? <a href="login.html">Log in</a></p>
+        <p><a href="forgot.html">Forgot Password?</a></p>
+    </div>
+
+    <!-- ✅ حماية الصفحة لمنع غير الإدمن من التسجيل -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userRole = localStorage.getItem("userRole");
+            if (userRole !== "admin") {
+                alert("❌ Access Denied! You are not allowed to register as an admin.");
+                window.location.href = "index.html"; // إعادة المستخدم للصفحة الرئيسية
+            }
+        });
+    </script>
+
+    <!-- كود تسجيل الإدمن -->
+    <script type="module" src="admin-signup.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="firebase-config.js"></script>
+    <title>Hospital Sent Donation Requests</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #fddde6, #fff);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+         /* 🔹 شريط التنقل */
+         header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 15px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: rgb(59, 22, 25);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        h2 {
+            color: #d32f2f;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #ffccd5;
+            color: #d32f2f;
+            font-size: 18px;
+        }
+
+        td {
+            font-size: 16px;
+            background: #fff5f7;
+        }
+
+        .status {
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .accepted {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 🔹 شريط التنقل -->
+<header>
+    <div class="logo">
+        <img src="imges/logo.jpg" alt="App Logo">
+        <span>Survival Link - Hospitals</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="hospital-home.html">Home</a></li>
+            <li><a href="hospital-profile.html">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+        <h2>Sent Donation Requests</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Donor Name</th>
+                    <th>Donation Type</th>
+                    <th>Date Sent</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="donationTable"></tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Survival Link. All Rights Reserved.</p>
+    </footer>
+
+
+    <script type="module" src="sent-donation.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module"  src="recommendation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Emergency Donation Request</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #fddde6, #fff);
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+         /* 🔹 شريط التنقل */
+         header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 15px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: rgb(59, 22, 25);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+            position: relative;
+        }
+
+        /* Container */
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+            font-weight: bold;
+            color: #444;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        /* Emergency Button */
+        .emergency-btn {
+            background-color: hsl(331, 29%, 59%);
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .emergency-btn:hover {
+            background-color: #4d4a4a;
+        }
+
+        /* Fade-in Effect */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 🔹 شريط التنقل -->
+<header>
+    <div class="logo">
+        <img src="imges/logo.jpg" alt="App Logo">
+        <span>Survival Link - Hospitals</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="hospital-home.html">Home</a></li>
+            <li><a href="hospital-profile.html">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+        <h1>Emergency Donation Request</h1>
+
+        <!-- Donation Form -->
+        <form id="donationForm">
+            <label for="donationType">Donation Type:</label>
+            <select id="donationType" required>
+                <option value="blood">Blood Donation</option>
+                <option value="organ">Organ Donation</option>
+            </select>
+
+            <div id="bloodTypeSection">
+                <label for="bloodType">Blood Type (Optional):</label>
+                <select id="bloodType">
+                    <option value="">Select Blood Type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                </select>
+            </div>
+
+            <div id="organTypeSection" style="display: none;">
+                <label for="organType">Organ Type:</label>
+                <select id="organType">
+                    <option value="">Select Organ</option>
+                    <option value="Kidney">Kidney</option>
+                    <option value="Liver">Liver</option>
+                    <option value="Heart">Heart</option>
+                    <option value="Lungs">Lungs</option>
+                    <option value="Pancreas">Pancreas</option>
+                    <option value="Intestines">Intestines</option>
+                    <option value="Cornea">Cornea</option>
+                    <option value="Skin">Skin</option>
+                    <option value="Bone Marrow">Bone Marrow</option>
+                </select>
+            </div>
+
+        </form>
+
+        <br>
+
+        <!-- Emergency Button -->
+        <button class="emergency-btn" id="emergencyBtn">🔴 Emergency! Find Nearest Blood Bank</button>
+
+    </div>
+    
+    <!-- 🔹 الفوتر -->
+    <footer>
+        <p>&copy; 2025 Survival Link. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // هذا الكود فقط عشان يبدل بين blood و organ
+        document.getElementById("donationType").addEventListener("change", function () {
+            let donationType = this.value;
+            let bloodSection = document.getElementById("bloodTypeSection");
+            let organSection = document.getElementById("organTypeSection");
+    
+            if (donationType === "blood") {
+                bloodSection.style.display = "block";
+                organSection.style.display = "none";
+            } else {
+                bloodSection.style.display = "none";
+                organSection.style.display = "block";
+            }
+     });
+    </script>
+
+</body>
+</html>

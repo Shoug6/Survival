@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script type="module" src="firebase-config.js"></script>
+    <style>
+        /* 🔹 الأساسيات */
+        body {
+            font-family: Arial, sans-serif;
+            background: #fce4ec;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 🔹 شريط التنقل */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 15px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: rgb(59, 22, 25);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* 🔹 بنر متحرك */
+        .banner {
+            background: #ffebee;
+            padding: 20px;
+            margin-top: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider div {
+            flex: 0 0 100%;
+            height: 400px;
+        }
+
+        .slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 🔹 تصميم نقاط التنقل */
+        .banner-controls {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .control-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 5px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .control-dot:hover, .control-dot.active {
+            background-color: #e44c7e;
+        }
+
+        /* 🔹 الترحيب بالمستخدم */
+        .welcome-message {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #5d0b4a;
+            font-weight: bold;
+        }
+
+        /* 🔹 أيقونات الصفحة الرئيسية */
+        .main-icons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .icon-box {
+            background: linear-gradient(to bottom, #fff, #fce4ec);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-box img {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .icon-box p {
+            font-size: 16px;
+            font-weight: lighter;
+            color: #333;
+        }
+
+        .icon-box:hover {
+            background: #e44c7e;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .icon-box:hover p {
+            color: white;
+        }
+
+        .icon-box:hover img {
+            transform: scale(1.1);
+        }
+           /* 🔹 الإشعارات */
+           .notifications {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            margin: 40px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #notifications-list {
+    max-height: 300px; /* تحديد الحد الأقصى للارتفاع */
+    overflow-y: auto;  /* تمكين السكرول العمودي إذا زادت الإشعارات */
+    margin-top: 10px;  /* مسافة صغيرة من الأعلى */
+    padding-right: 10px; /* مسافة من اليمين إذا كانت هناك سكرول عمودي */
+}
+.notification-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    text-align: left;
+    gap: 10px;
+}
+.notification-icon {
+    font-size: 20px;
+}
+.notification-text {
+flex:1;
+}
+        .notification-title {
+    font-size: 22px;
+    color: #b30059;
+    margin-bottom: 20px;
+    text-align:center;
+}
+
+
+        /* 🔹 الفوتر */
+        footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="imges/logo.jpg" alt="App Logo">
+        <span>Survival Link</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile-donor.html">Profile</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+<section class="banner">
+    <div class="slider">
+        <div><img src="imges/bannar10.jpg" alt="Image 1"></div>
+        <div><img src="imges/bannar11.jpg" alt="Image 2"></div>
+        <div><img src="imges/banner13.jpg" alt="Image 3"></div>
+    </div>
+    <div class="banner-controls">
+        <span class="control-dot" onclick="moveSlider(0)"></span>
+        <span class="control-dot" onclick="moveSlider(1)"></span>
+        <span class="control-dot" onclick="moveSlider(2)"></span>
+    </div>
+</section>
+
+<section class="welcome-message" id="welcome-message">
+    Welcome, User!
+</section>
+
+<section class="main-icons">
+    <div class="icon-box" id="donation-history" onclick="window.location.href='donation-History.html'">
+        <img src="imges/icon-donate.png" alt="Donation History">
+        <p>Donation History</p>
+    </div>
+    <div class="icon-box" id="request-donation" onclick="window.location.href='request-donor.html'">
+        <img src="imges/icon-donate2.png" alt="Request Donation">
+        <p>Request Donation</p>
+    </div>
+    <div class="icon-box" id="educational-content" onclick="window.location.href='educational-donor.html'">
+        <img src="imges/icon-edu.png" alt="Educational Content">
+        <p>Educational Content</p>
+    </div>
+</section>
+
+<section class="main-icons">
+    <div class="icon-box">
+        <img src="imges/icon-vision.png" alt="Vision">
+        <p>Vision</p>
+        <div class="icon-content">
+            <p>Delivering life-saving support seamlessly.</p>
+        </div>
+    </div>
+    <div class="icon-box">
+        <img src="imges/icon-lamp.PNG" alt="Mission">
+        <p>Mission</p>
+        <div class="icon-content">
+            <p>Our mission is to connect donors with hospitals in need of critical donations.</p>
+        </div>
+    </div>
+    <div class="icon-box">
+        <img src="imges/icon-target.png" alt="Goal">
+        <p>Goal</p>
+        <div class="icon-content">
+            <p>Our goal is to save lives by creating a reliable and efficient donation network.</p>
+        </div>
+    </div>
+   
+    </div>
+</section>
+
+<section class="notifications">
+    <h2 class="notification-title">Notifications</h2>
+    <div id="notifications-list">
+        <!-- الإشعارات تظهر هنا -->
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Survival Link. All Rights Reserved.</p>
+</footer>
+
+<script type="module" src="home.js"></script>
+<script type="module" src="chatbot.js"></script>
+<script>
+    function moveSlider(index) {
+        const slider = document.querySelector('.slider');
+        slider.style.transform = `translateX(-${index * 100}%)`;
+
+        document.querySelectorAll('.control-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+</script>
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="slinkChatBot"
+  agent-id="4fb22028-1e87-4191-9315-478492e747c6"
+  language-code="en"
+></df-messenger>
+
+</body>
+</html>

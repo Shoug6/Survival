@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Profile</title>
+    <script type="module" src="firebase-config.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fce4ec;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #d32f2f;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        /* ❌ جعل بعض الحقول غير قابلة للتعديل */
+        input[disabled] {
+            background: #f5f5f5;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        .update-btn {
+            background-color: #e44c7e;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .update-btn:hover {
+            background-color: #c53866;
+        }
+
+        .success-message {
+            display: none;
+            color: green;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Donor Profile</h2>
+
+        <label for="donor-name">Full Name</label>
+        <input type="text" id="donor-name" disabled>
+
+        <label for="donor-id">ID Number</label>
+        <input type="text" id="donor-id" disabled>
+
+        <label for="donor-blood">Blood Type</label>
+        <input type="text" id="donor-blood" disabled>
+
+        <label for="donor-location">City</label>
+        <input type="text" id="donor-location" disabled>
+
+        <label for="donor-age">Age</label>
+        <input type="text" id="donor-age" disabled>
+
+        <label for="donor-phone">Phone Number</label>
+        <input type="text" id="donor-phone">
+
+        <label for="donor-email">Email </label>
+        <input type="email" id="donor-email">
+
+        <button class="update-btn" id="update-profile">Update Profile</button>
+        <p class="success-message" id="success-message">✅ Profile updated successfully!</p>
+    </div>
+
+    <script type="module" src="profile-donor.js"></script>
+
+</body>
+</html>

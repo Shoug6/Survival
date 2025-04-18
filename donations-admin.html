@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Requests - Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="donation-requests.js"></script>
+    <style>
+        /* 🔹 الأساسيات */
+        body {
+            font-family: Arial, sans-serif;
+            background: #fce4ec;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* 🔹 شريط التنقل */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 15px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: rgb(59, 22, 25);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+
+        /* 🔹 خلفية الصفحة */
+        .background {
+            background: linear-gradient(to bottom, #ffb6c1, #fce4ec);
+            padding: 30px 20px;
+        }
+
+        /* 🔹 فلتر البحث */
+        .filter-container {
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* 🔹 جدول الطلبات */
+        .table-container {
+            width: 90%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #ff4081;
+            color: white;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-cancel {
+            background: red;
+            color: white;
+        }
+
+        .btn-disabled {
+            background: grey;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        /* 🔹 الفوتر */
+        footer {
+    background-color: #fff0f5;
+    padding: 20px 0;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 15px;
+    color: #16060f;
+    border-top: 1px solid #f8bbd0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="imges/logo.jpg" alt="App Logo">
+        <span>Survival Link - Admin</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="admin-home.html">Home</a></li>
+            <li><a href="donations-admin.html">Donation Requests</a></li>
+            <li><a href="report-admin.html">Reports</a></li>
+            <li><a href="profile-admin.html">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="background">
+    <h2>Donation Requests Management</h2>
+    <div class="filter-container">
+        <label for="status-filter">Filter by Status:</label>
+        <select id="status-filter">
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+            <option value="canceled">Canceled</option>
+        </select>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead><tr><th>Donor Name</th><th>Donor ID</th><th>Hospital</th><th>Blood Type</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="requests-table"></tbody>
+        </table>
+    </div>
+</div>
+
+<footer><p>&copy; 2025 Survival Link. All Rights Reserved.</p></footer>
+<script type="module" src="donation-admin.js"></script>
+
+</body>
+</html>

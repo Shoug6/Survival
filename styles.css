@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('imges/background1.jpg') no-repeat center center fixed; /* إضافة الصورة الخلفية */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+/* إضافة طبقة شفافة فوق الخلفية */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(116, 102, 102, 0.6); /*   تعديل الشفافية */
+    z-index: -1; /* عشان تكون الطبقة تكون تحت المحتوى */
+}
+
+
+.container {
+    background: rgba(255, 255, 255, 0.9); /* الشفافية البيضاء */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    backdrop-filter: blur(8px); /* تأثير ضبابي في الخلف */
+}
+
+/* العناوين */
+h1 {
+    font-size: 28px;
+    color: #e91e63;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #e91e63;
+}
+
+/* أزرار اختيار الدور */
+.role-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+button {
+    background: #e91e63;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #c2185b;
+}
+
+/* إدخال البيانات */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* روابط */
+p a {
+    color: #e91e63;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+
+/* تنسيق الـ select */
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+/* تغيير لون الخلفية عند التمرير */
+select:hover {
+    background-color: #f2f2f2;
+}
+
+/* تغيير اللون عند اختيار عنصر من القائمة */
+select:focus {
+    border-color: #66afe9;
+    outline: none;
+}
+
+/* تنسيق اختيار الـ option داخل الـ select */
+select option {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* تنسيق الـ select داخل الحقول */
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="number"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* تأثير عند تمرير الفأرة على الحقول */
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, input[type="tel"]:hover, input[type="number"]:hover, input[type="date"]:hover, select:hover {
+    background-color: #f2f2f2;
+}

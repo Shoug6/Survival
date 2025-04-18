@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Profile</title>
+    <script type="module" src="firebase-config.js"></script>
+    <style>
+        /* 🔹 الأساسيات */
+        body {
+            font-family: Arial, sans-serif;
+            background: #fce4ec;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 🔹 شريط التنقل */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 15px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: rgb(59, 22, 25);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* 🔹 صندوق البروفايل */
+        .profile-container {
+            width: 50%;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        h2 {
+            color: #e44c7e;
+            font-size: 26px;
+            text-align: center;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #444;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        /* 🔹 زر التحديث */
+        .update-btn {
+            background-color: #e44c7e;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .update-btn:hover {
+            background-color: #c72e5d;
+        }
+
+        /* 🔹 رسالة التأكيد */
+        .success-message {
+            display: none;
+            color: #008000;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        /* 🔹 الفوتر */
+        footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="imges/logo.jpg" alt="App Logo">
+        <span>Survival Link - Hospital</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="hospital-home.html">Home</a></li>
+            <li><a href="hospital-profile.html">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ✅ قسم البروفايل -->
+<div class="profile-container">
+    <h2>Hospital Profile</h2>
+    
+    <label for="hospital-name">Hospital Name</label>
+    <input type="text" id="hospital-name" disabled>
+
+    <label for="hospital-email">Email</label>
+    <input type="email" id="hospital-email" disabled>
+
+    <label for="hospital-phone">Phone Number</label>
+    <input type="text" id="hospital-phone">
+
+    <label for="hospital-location">Location</label>
+    <select id="hospital-location" disabled>
+        <option value="Riyadh">Riyadh</option>
+        <option value="Jeddah">Jeddah</option>
+        <option value="Makkah">Makkah</option>
+        <option value="Madinah">Madinah</option>
+        <option value="Dammam">Dammam</option>
+        <option value="Khobar">Khobar</option>
+        <option value="Taif">Taif</option>
+        <option value="Abha">Abha</option>
+        <option value="Buraidah">Buraidah</option>
+        <option value="Tabuk">Tabuk</option>
+        <option value="Khamis Mushait">Khamis Mushait</option>
+    </select>
+
+    <button class="update-btn" id="update-profile">Update Profile</button>
+    <p class="success-message" id="success-message">✔ Profile updated successfully!</p>
+</div>
+
+<footer>
+    <p>&copy; 2024 Survival Link. All Rights Reserved.</p>
+</footer>
+
+<script type="module" src="hospital-profile.js"></script>
+
+</body>
+</html>
