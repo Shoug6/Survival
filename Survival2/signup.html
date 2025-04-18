@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Firebase Config -->
+    <script type="module" src="firebase-config.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <input type="text" id="full-name" placeholder="Full Name" required>
+            <input type="text" id="nationalID" placeholder="national ID" required>
+            <input type="number" id="age" placeholder="Age" required>
+            <input type="date" id="dob" required>
+            <input type="text" id="blood-type" placeholder="Blood Type" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            
+            <!-- تغيير خانة الموقع إلى قائمة اختيار مدن السعودية -->
+            <select id="location" required>
+                <option value="" disabled selected>Select Your City</option>
+                <option value="Riyadh">Riyadh</option>
+                <option value="Jeddah">Jeddah</option>
+                <option value="Makkah">Makkah</option>
+                <option value="Madinah">Madinah</option>
+                <option value="Dammam">Dammam</option>
+                <option value="Khobar">Khobar</option>
+                <option value="Taif">Taif</option>
+                <option value="Abha">Abha</option>
+                <option value="Buraidah">Buraidah</option>
+                <option value="Khamis Mushait">Khamis Mushait</option>
+            </select>
+            
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" onclick="saveUserData()">Sign Up</button>
+        </form>
+
+        <p>Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+
+    <!-- ✅ التحقق من دور المستخدم ومنع غير المتبرعين من الوصول -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userRole = localStorage.getItem("userRole");
+            if (userRole !== "donor") {
+                alert("❌ Access Denied! You are not allowed to register as a donor.");
+                window.location.href = "index.html"; // إعادة المستخدم للصفحة الرئيسية
+            }
+        });
+    </script>
+
+    <!-- كود معالجة التسجيل -->
+    <script type="module" src="signup.js"></script>
+
+</body>
+</html>

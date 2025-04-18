@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+    <title>Donation History</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* 🔹 أساسيات التصميم */
+        body {
+            font-family: Arial, sans-serif;
+            background: #fce4ec;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* 🔹 شريط التنقل */
+        header {
+            background-color: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); 
+            color: rgb(59, 22, 25);
+            padding: 15px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 76px;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: rgb(59, 22, 25);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* 🔹 محتوى الصفحة */
+        .container {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container h1 {
+            color: #d32f2f;
+            font-size: 32px;
+        }
+
+        .quote, .hadith {
+            font-style: italic;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .donation-table {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .donation-table th, .donation-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .donation-table th {
+            background: #6c0c49;
+            color: white;
+            font-size: 18px;
+        }
+
+        .donation-table tbody tr:hover {
+            background: #f4f4f4;
+        }
+
+        /* 🔹 تلوين حالة التبرع */
+        .status-completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .icon {
+            font-size: 22px;
+            color: #d32f2f;
+            margin-right: 10px;
+        }
+
+        /* 🔹 الفوتر */
+        footer {
+            background-color: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); 
+            color: rgb(59, 22, 25);
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        .full-banner {
+            width: 100%; 
+            height: 300px; 
+            object-fit: cover;
+            display: block;
+            margin: 0; 
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 🔹 شريط التنقل -->
+<header>
+    <div class="logo">
+        <img src="imges/logo.jpg" alt="App Logo">
+        <span>Survival Link</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile-donor.html">Profile</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+<!-- 🔹 محتوى الصفحة -->
+<section class="container">
+
+    <!-- 🔹 إضافة صورة كبنر فوق الجدول -->
+    <img src="imges/donation-history.jpg" alt="Donation History Banner" class="full-banner">
+
+    <!-- 🔹 جدول التبرعات -->
+    <table class="donation-table">
+        <thead>
+            <tr>
+                <th>Donation Date</th>
+                <th>Hospital ID</th>
+                <th>Donation Type</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="donation-history">
+            <!-- البيانات ستضاف هنا عبر JavaScript -->
+        </tbody>
+    </table>
+</section>
+
+<!-- 🔹 الفوتر -->
+<footer>
+    <p>&copy; 2025 Survival Link. All Rights Reserved.</p>
+</footer>
+
+<!-- Firebase SDKs -->
+<script type="module" src="donation-history.js"></script>
+
+</body>
+</html>

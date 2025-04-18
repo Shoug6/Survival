@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donation Information</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 0;
+      color: #3b1619;
+    }
+
+    /* 🔹 شريط التنقل */
+    header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 15px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: rgb(59, 22, 25);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+
+
+    section {
+      padding: 120px 20px 60px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      color: #880e4f;
+    }
+
+    .content-flex {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    .content-item {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .content-item.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .content-item img {
+      flex: 1 1 350px;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .content-item .text {
+      flex: 1 1 300px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .text h2 {
+      margin-bottom: 10px;
+      color: #c2185b;
+    }
+
+    .text ul {
+      padding-left: 20px;
+    }
+
+    .video-section {
+      margin: 60px 0;
+      text-align: center;
+    }
+
+    .video-section iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .faq-section {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .faq-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      color: #d81b60;
+      text-align: center;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+    }
+
+    .faq-item h3 {
+      font-size: 20px;
+      color: #3b1619;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    footer {
+      background-color: #ffffffdd;
+      backdrop-filter: blur(5px);
+      color: #3b1619;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 60px;
+      box-shadow: 0 -4px 8px rgba(0,0,0,0.05);
+    }
+
+    
+  .content-item img {
+    flex: 1 1 250px;
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .content-item .text {
+    flex: 2 1 400px;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .content-item img {
+      max-width: 100%;
+    }}
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="imges/logo.jpg" alt="App Logo">
+      <span>Survival Link</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="profile-donor.html">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <div class="section-title">Educational Contents</div>
+    <div class="content-flex">
+      <div class="content-item">
+        <img src="imges/blood-donation.jpg" alt="Blood Donation">
+        <div class="text">
+          <h2>What is Blood Donation?</h2>
+          <p>Blood donation is the process of voluntarily giving blood to help those in need. It can save lives in emergency situations or provide ongoing treatment for patients with certain conditions.</p>
+        </div>
+      </div>
+
+      <div class="content-item reverse">
+        <img src="imges/Donate-Organ.png" alt="Organ Donation">
+        <div class="text">
+          <h2>What is Organ Donation?</h2>
+          <p>Organ donation involves giving one or more organs to help save the life of someone in need of a transplant. It's a selfless act that can greatly impact someone's future.</p>
+        </div>
+      </div>
+
+      <div class="content-item">
+        <img src="imges/benefit-donate.jpg" alt="Volunteer Donating">
+        <div class="text">
+          <h2>Benefits of Organ Donation</h2>
+          <ul>
+            <li>Saves lives by providing a second chance for people with critical health conditions.</li>
+            <li>Improves the quality of life for recipients by restoring normal function.</li>
+            <li>Promotes humanity and social solidarity by helping others in need.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-item reverse">
+        <img src="imges/edu-pic2.jpg" alt="Thank You Donor">
+        <div class="text">
+          <h2>Who Can Donate?</h2>
+          <p>Generally, anyone in good health can become a donor. Eligibility depends on the condition of the organs and the donor's medical history. Age is not necessarily a restriction.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-section">
+      <iframe src="https://www.youtube.com/embed/VLoBCrHz2nQ" title="YouTube video player" allowfullscreen></iframe>
+    </div>
+
+    <div class="faq-section">
+      <div class="faq-title">Frequently Asked Questions (FAQs)</div>
+      <div class="faq-item">
+        <h3>Is blood donation painful?</h3>
+        <p>Blood donation is generally not painful. The needle used is small, and the procedure is quick. Most people experience minimal discomfort during the process.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What happens after donating blood?</h3>
+        <p>After donating blood, you may rest for a few minutes and then enjoy a snack and drink to help replenish your energy. It’s important to hydrate and eat well after donating.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Are there any risks in organ donation?</h3>
+        <p>Organ donation is safe and does not put the donor’s life at risk. Medical teams ensure the health and safety of both the donor and recipient before proceeding with the donation.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Survival Link. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

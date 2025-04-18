@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+    <script type="module" src="firebase-config.js"></script>
+    <style>
+       
+       body {
+            font-family: Arial, sans-serif;
+            background: #fce4ec;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* 🔹 شريط التنقل */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 15px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: rgb(59, 22, 25);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .background {
+            background: linear-gradient(to bottom, #ffb6c1, #fce4ec);
+            padding: 30px 20px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        /* 🔹 صندوق البروفايل */
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #d32f2f;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input[disabled] {
+            background: #f5f5f5;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        .update-btn {
+            background-color: #e44c7e;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .update-btn:hover {
+            background-color: #c53866;
+        }
+
+        .success-message {
+            display: none;
+            color: green;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        /* الفوتر */
+        footer {
+            background-color: #f8f8f8;
+            color: #444;
+            padding: 20px;
+            margin-top: 40px;
+            text-align: center;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="imges/logo.jpg" alt="App Logo">
+        <span>Survival Link - Admin</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="admin-home.html">Home</a></li>
+            <li><a href="donations-admin.html">Donation Requests</a></li>
+            <li><a href="report-admin.html">Reports</a></li>
+            <li><a href="profile-admin.html">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Admin Profile</h2>
+
+    <label for="admin-name">Admin Name</label>
+    <input type="text" id="admin-name" disabled>
+
+    <label for="admin-email">Email</label>
+    <input type="email" id="admin-email" disabled>
+
+    <label for="admin-phone">Phone Number</label>
+    <input type="text" id="admin-phone">
+
+    <button class="update-btn" id="update-profile">Update Profile</button>
+    <p class="success-message" id="success-message">✔ Profile updated successfully!</p>
+</div>
+
+<footer>
+    <p>&copy; 2025 Survival Link. All Rights Reserved.</p>
+</footer>
+
+<script type="module" src="admin-profile.js"></script>
+
+</body>
+</html>

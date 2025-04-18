@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Firebase Config -->
+    <script type="module" src="firebase-config.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Register Hospital</h2>
+        <form id="signup-form">
+            <input type="text" id="hospital-name" placeholder="Hospital Name" required>
+            <input type="email" id="hospital-email" placeholder="Email" required>
+            <input type="password" id="hospital-password" placeholder="Password" required>
+            <input type="text" id="hospital-phone" placeholder="Phone Number" required>
+            <select id="location" required>
+                <option value="" disabled selected>Select Your City</option>
+                <option value="Riyadh">Riyadh</option>
+                <option value="Jeddah">Jeddah</option>
+                <option value="Makkah">Makkah</option>
+                <option value="Madinah">Madinah</option>
+                <option value="Dammam">Dammam</option>
+                <option value="Khobar">Khobar</option>
+                <option value="Taif">Taif</option>
+                <option value="Abha">Abha</option>
+                <option value="Buraidah">Buraidah</option>
+                <option value="Tabuk">Tabuk</option>
+                <option value="Khamis Mushait">Khamis Mushait</option>
+            </select>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Log in</a></p>
+<p><a href="forgot.html">Forgot Password?</a></p>
+    </div>
+
+    <!-- ✅ حماية الصفحة لمنع المتبرعين والإدمن من التسجيل كمستشفى -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userRole = localStorage.getItem("userRole");
+            if (userRole !== "hospital") {
+                alert("❌ Access Denied! You are not allowed to register as a hospital.");
+                window.location.href = "index.html"; // إعادة المستخدم للصفحة الرئيسية
+            }
+        });
+    </script>
+
+    <!-- كود تسجيل المستشفى -->
+    <script type="module" src="hospital-signup.js"></script>
+
+</body>
+</html>

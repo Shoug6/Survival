@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Link</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom, #fddde6, #fff);
+            color: #333;
+            overflow-x: hidden;
+            height: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8); /* شفافية مع لون أبيض */
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar .logo {
+            font-size: 30px;
+            color: #333;
+            font-weight: bold;
+            order: 2;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 20px;
+            order: 1;
+        }
+
+        .dropdown {
+            position: relative;
+            cursor: pointer;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 5px 10px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            color: #333;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+            width: 250px;
+            top: 100%;
+            right: 0;
+            z-index: 100;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(10px);
+            word-wrap: break-word;
+            white-space: normal;
+            overflow-wrap: break-word;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            padding-top: 60px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content {
+            flex: 1;
+            text-align: center;
+            margin-right: 50px;
+        }
+
+        .quote {
+            font-size: 2rem;
+            color: #04512a;
+            font-weight: bold;
+            margin: 20px 0;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .role-options {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .role-option {
+            font-size: 1.5rem;
+            padding: 20px 40px;
+            background-color: transparent;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+            border: none;
+        }
+
+        .role-option:hover {
+            background-color: #333;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .image {
+            flex: 1;
+            background-image: url('imges/backg.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+            margin-left: -50px;
+        }
+
+        @media (max-width: 768px) {
+            .role-options {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .logo {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu">
+            <div class="dropdown">
+                Contact Us
+                <div class="dropdown-content">
+                   
+                        <ul>
+                            <li><a href="tel:+966123456789">📞 +966 123 456 789</a></li>
+                            <li><a href="mailto:info@survivallink.com">✉️ info@survivallink.com</a></li>
+                        </ul>
+                    
+                </div>
+            </div>
+    
+            <div class="dropdown">
+                About Us
+                <div class="dropdown-content">
+                    <p>Survival Link is a platform dedicated to connecting blood and organ donors with hospitals in need.</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="logo">Survival Link</div>
+    </div>
+    
+    <div class="container">
+        <div class="content">
+            <div class="quote">
+                وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا
+            </div>
+    
+            <div class="role-options">
+                <button class="role-option" onclick="setRole('donor')">Donor</button>
+                <button class="role-option" onclick="setRole('hospital')">Hospital</button>
+                <button class="role-option" onclick="setRole('admin')">Admin</button>
+            </div>
+        </div>
+    
+        <div class="image"></div>
+    </div>
+    
+    <!-- ✅ سكربت حفظ الدور والتنقل الصحيح -->
+    <script>
+        function setRole(role) {
+            localStorage.setItem("userRole", role); // حفظ الدور في Local Storage
+            switch (role) {
+                case "donor":
+                    window.location.href = "signup.html";
+                    break;
+                case "hospital":
+                    window.location.href = "login.html";
+                    break;
+                case "admin":
+                    window.location.href = "login.html";
+                    break;
+                default:
+                    window.location.href = "index.html"; // إذا صار خطأ يرجع للصفحة الرئيسية
+            }
+        }
+    </script>
+    
+    </body>
+    
+    </html>

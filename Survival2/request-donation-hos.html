@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Request</title>
+    <script type="module" src="firebase-config.js"></script> 
+    <style>
+        /* 🔹 تنسيق عام */
+        body {
+            font-family: Arial, sans-serif;
+            background: url('imges/background1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+    
+        /* طبقة شفافة فوق الخلفية */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(116, 102, 102, 0.6);
+            z-index: -1;
+        }
+    
+        .form-container {
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+    
+        h1 {
+            color: #333;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+    
+        label {
+            font-size: 1.1em;
+            font-weight: bold;
+            display: block;
+            margin: 12px 0 6px;
+            text-align: left;
+        }
+    
+        select, input[type="date"], input[type="text"], input[type="hidden"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+    
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #d67d8a;
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+    
+        button:hover {
+            background: #6b3c43;
+        }
+    
+        .hidden {
+            display: none;
+        }
+    
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 20px;
+            }
+    
+            h1 {
+                font-size: 1.5em;
+            }
+    
+            label, select, input, button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 🔹 نموذج طلب التبرع -->
+<div class="form-container">
+    <h1>Donation Request</h1>
+    <form id="donationRequestForm">
+        
+        <!-- 🔹 اختيار المتبرع -->
+        <label for="donorList">Select a Donor:</label>
+        <select id="donorList">
+            <option value="">-- Select Donor --</option>
+        </select>
+
+        <input type="hidden" id="donorId"> <!-- إخفاء ID المتبرع -->
+
+        <label for="donationType">Donation Type:</label>
+        <select id="donationType" required>
+            <option value="Blood">Blood</option>
+            <option value="Organ">Organ</option>
+        </select>
+
+        <!-- قائمة فصائل الدم (تظهر فقط عند اختيار Blood) -->
+        <div id="bloodTypeContainer">
+            <label for="bloodType">Blood Type:</label>
+            <select id="bloodType">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+        </div>
+
+        <!-- قائمة الأعضاء (تظهر فقط عند اختيار Organ) -->
+        <div id="organTypeContainer" class="hidden">
+            <label for="organType">Organ Type:</label>
+            <select id="organType">
+                <option value="Kidney">Kidney</option>
+                <option value="Liver">Liver</option>
+                <option value="Heart">Heart</option>
+                <option value="Lung">Lung</option>
+                <option value="Pancreas">Pancreas</option>
+                <option value="Cornea">Cornea</option>
+            </select>
+        </div>
+
+        <label for="donationDate">Donation Date:</label>
+        <input type="date" id="donationDate" required>
+
+        <button type="submit">Send Donation Request</button>
+    </form>
+</div>
+
+<script type="module" src="donatinRequest.js"></script>
+<script>
+    // ✅ تحديث الحقول عند تغيير نوع التبرع
+    document.getElementById("donationType").addEventListener("change", function() {
+        const bloodTypeContainer = document.getElementById("bloodTypeContainer");
+        const organTypeContainer = document.getElementById("organTypeContainer");
+
+        if (this.value === "Blood") {
+            bloodTypeContainer.style.display = "block";
+            organTypeContainer.style.display = "none";
+        } else {
+            bloodTypeContainer.style.display = "none";
+            organTypeContainer.style.display = "block";
+        }
+    });
+</script>
+
+</body>
+</html>

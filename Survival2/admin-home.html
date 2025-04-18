@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script type="module" src="firebase-config.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fce4ec;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* 🔹 شريط التنقل */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: rgb(59, 22, 25);
+            padding: 15px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: rgb(59, 22, 25);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .background {
+            background: linear-gradient(to bottom, #ffb6c1, #fce4ec);
+            padding: 30px 20px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .dashboard-card:hover {
+            transform: scale(1.05);
+        }
+
+        .table-container {
+            width: 90%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #ff4081;
+            color: white;
+        }
+
+        /* ✅ تنسيق فورم إرسال الإشعارات */
+        .notification-form {
+            margin-top: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .notification-form select, 
+        .notification-form input, 
+        .notification-form textarea, 
+        .notification-form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .notification-form button {
+            background-color: #ff4081;
+            color: white;
+            cursor: pointer;
+        }
+
+        .notification-form button:hover {
+            background-color: #d81b60;
+        }
+        footer {
+    background-color: #fff0f5;
+    padding: 20px 0;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 15px;
+    color: #000000;
+    border-top: 1px solid #f8bbd0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="imges/logo.jpg" alt="App Logo">
+        <span>Survival Link - Admin</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="admin-home.html">Home</a></li>
+            <li><a href="donations-admin.html">Donation Requests</a></li>
+            <li><a href="report-admin.html">Reports</a></li>
+            <li><a href="profile-admin.html">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="background">
+    <h2 class="welcome-message" id="welcome-message">Welcome, Admin</h2>
+
+    <div class="dashboard">
+        <div class="dashboard-card"><h3>Registered Hospitals</h3><p id="hospital-count">0</p></div>
+        <div class="dashboard-card"><h3>Registered Donors</h3><p id="donor-count">0</p></div>
+        <div class="dashboard-card"><h3>Donation Requests</h3><p id="request-count">0</p></div>
+        <div class="dashboard-card"><h3>Emergency Reports</h3><p id="report-count">0</p></div>
+    </div>
+</div>
+
+<!-- ✅ الجداول -->
+<section class="table-container">
+    <h2>Hospitals Management</h2>
+    <table>
+        <tr><th>Hospital ID</th><th>Hospital Name</th><th>City</th></tr>
+        <tbody id="hospital-table"></tbody>
+    </table>
+    <!-- ✅ زر View ثابت -->
+    <div style="margin-top: 10px; text-align: right;">
+        <button onclick="window.location.href='hos-manag.html'" style="padding: 8px 16px; background-color: #ff4081; color: white; border: none; border-radius: 6px; cursor: pointer;">View Hospitals</button>
+    </div>
+</section>
+
+
+<section class="table-container">
+    <h2>Donors Management</h2>
+    <table>
+        <tr><th>Donor ID</th><th>Donor Name</th><th>Blood Type</th><th>Location</th></tr>
+        <tbody id="donor-table"></tbody>
+    </table>
+    <!-- ✅ زر View ثابت -->
+    <div style="margin-top: 10px; text-align: right;">
+        <button onclick="window.location.href='donor-manag.html'" style="padding: 8px 16px; background-color: #ff4081; color: white; border: none; border-radius: 6px; cursor: pointer;">View Donors</button>
+    </div>
+</section>
+
+<section class="table-container">
+    <h2>Blood Banks Management</h2>
+    <table>
+        <tr>
+            <th>Blood Bank Name</th>
+            <th>Location</th>
+            <th>Availability</th>
+            <th>Response Score</th>
+        </tr>
+        <tbody id="blood-bank-table"></tbody>
+    </table>
+    <!-- ✅ زر View ثابت -->
+    <div style="margin-top: 10px; text-align: right;">
+        <button onclick="window.location.href='blood-types.html'" style="padding: 8px 16px; background-color: #ff4081; color: white; border: none; border-radius: 6px; cursor: pointer;">View Blood Banks</button>
+    </div>
+</section>
+
+<!-- ✅ فورم إرسال الإشعارات -->
+<section class="notification-form">
+    <h3>Send Notification</h3>
+    <label>Send To:</label>
+    <select id="recipient-type" onchange="toggleRecipientSelection()">
+        <option value="all-donors">All Donors</option>
+        <option value="all-hospitals">All Hospitals</option>
+        <option value="specific-donor">Specific Donor</option>
+        <option value="specific-hospital">Specific Hospital</option>
+    </select>
+
+    <select id="recipient-selection" style="display: none;"></select>
+
+    <textarea id="notification-message" placeholder="Enter notification message..." rows="3"></textarea>
+    <button id="send-notification-btn">Send Notification</button>
+</section>
+
+<footer>
+    <p>&copy; 2025 Survival Link. All Rights Reserved.</p>
+</footer>
+
+<script type="module" src="admin-home.js"></script>
+
+</body>
+</html>
